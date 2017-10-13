@@ -19,5 +19,5 @@ app.listen(app.get('port'), function() {
 });
 
 function getAllImages() {
-    return fs.readdirSync('./public');
+    return fs.readdirSync('./public').filter(filename => ['.png', '.jpg'].some(ext => filename.endsWith(ext)));
 }
