@@ -13,6 +13,9 @@ app.set('view engine', 'ejs');
 app.get('/', function (request, response) {
     response.render('pages/index', { images: getAllImages() });
 });
+app.get('/display', function (request, response) {
+    response.render('pages/display', { image: getImage(request.query.i) });
+});
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
@@ -20,4 +23,11 @@ app.listen(app.get('port'), function() {
 
 function getAllImages() {
     return fs.readdirSync('./public').filter(filename => ['.png', '.jpg'].some(ext => filename.endsWith(ext)));
+}
+function getImage(imageName) {
+    return {
+        name: imageName,
+        src: './' + imageName,
+        psdSrc: './' + imageName.substr(0, imageName.lastIndexOf('.')) + '.psd'
+    };
 }
