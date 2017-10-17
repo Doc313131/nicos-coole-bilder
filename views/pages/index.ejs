@@ -9,13 +9,13 @@
 	<ul>
 		<% for(var image of images) { %>
 			<li>
-				<a href=./display?i=<%=image%>><%=image%></a>
+				<a href='./display?i=<%=image%>'><%=image%></a>
 			</li>
 		<% } %>
 	</ul>
-	<form ref='uploadForm' id='uploadForm' action='./desplay' method='post'>
-        <input type='file' name='sampleFile' />
-        <input type='submit' value='Upload!' />
-    </form>     
+	<form action='./display' method='POST' enctype='multipart/form-data'>
+		<input type='file' name='samplefile'/>
+		<input type='submit' value='Upload'/>
+	</form>
 </body>
 </html>
