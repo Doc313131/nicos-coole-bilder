@@ -32,6 +32,7 @@ app.post('/display', function (request, response) {
 
         res.send('File uploaded!');
     });
+});
 
 app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));
