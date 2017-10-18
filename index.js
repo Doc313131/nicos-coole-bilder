@@ -26,6 +26,8 @@ app.post('/display', function (req, res) {
 
     // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
     let  sampleFile  =  req.files.samplefile;
+    if(sampleFile == undefined)
+        return res.status(400).send('Please select a file');
 
     // Use the mv() method to place the file somewhere on your server
     sampleFile.mv('public/' + sampleFile.name,  function (err)  {
@@ -46,9 +48,13 @@ function getAllImages(callback) {
     return callback();
 }
 function getImage(imageName) {
+    var path = './' + imageName.substr(0, imageName.lastIndexOf('.')) + '.psd';
+    if(!fs.existsSync('./public/' + imageName.substr(0, imageName.lastIndexOf('.')) + '.psd'))
+        path = undefined;
+
     return {
         name: imageName,
         src: './' + imageName,
-        psdSrc: './' + imageName.substr(0, imageName.lastIndexOf('.')) + '.psd'
+        psdSrc: path
     };
 }

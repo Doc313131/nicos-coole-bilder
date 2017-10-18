@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>image.name</title>
+	<title><% image.name %></title>
 	<style>
 		img {height: 540px;}
 	</style>
@@ -9,6 +9,8 @@
 
 <body>
 	<img src="<%=image.src%>"/><br>
-	<a href="<%=image.psdSrc%>">Download Photoshop-File</a>
+	<% if(image.psdSrc != undefined) { %>
+		<a href="<%=image.psdSrc%>">Download Photoshop-File</a>
+	<% } %>
 </body>
 </html>
